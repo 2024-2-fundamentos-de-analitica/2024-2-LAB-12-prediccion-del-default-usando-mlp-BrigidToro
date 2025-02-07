@@ -147,6 +147,7 @@ def create_pipeline() -> Pipeline:
             ('ohe', OneHotEncoder(dtype="int"), cat_features),
         ],
         remainder=StandardScaler(),
+        n_jobs=-1
     )
 
     return Pipeline(
@@ -177,7 +178,8 @@ def create_estimator(pipeline: Pipeline, x: pd.DataFrame) -> GridSearchCV:
         cv=10,
         scoring='balanced_accuracy',
         verbose=2,
-        refit=True
+        refit=True,
+        n_jobs=-1
     )
 
 """
